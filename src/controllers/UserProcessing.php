@@ -19,7 +19,7 @@ class User{
     function editionLayout($info){
         $title = 'Modification de l\'utilisateur';
         $db = new DatabaseConnection();
-        $rawData = (new DataExtract()) -> getRowWhere($db, "btsProject_User", ["idUser", $info['idUser']]);
+        $rawData = (new DataExtract()) -> getRowWhere($db, "btsProject_User", ["idUser", $info['idUser']], "");
         $data = $rawData[0];
         $this -> edition = true;
         $this -> editInput = "";

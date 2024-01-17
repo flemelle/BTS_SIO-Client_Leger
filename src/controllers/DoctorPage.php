@@ -14,7 +14,7 @@ class Doctors{
         if ($_SESSION['role'] == 'admin'){
             $title = 'Médecins';
             $db = new DatabaseConnection();
-            $doctorList = (new DataExtract()) -> getList($db, "btsProject_User_Doctor");
+            $doctorList = (new DataExtract()) -> getList($db, "btsProject_User_Doctor", "");
             //echo var_dump($doctorList);
             include 'template/DoctorsPageTemplate.php';
         } else {

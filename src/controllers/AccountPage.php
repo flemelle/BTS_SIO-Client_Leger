@@ -20,14 +20,14 @@ class Account{
         $this -> mofidyButton = "visible";
         $title = 'Compte';
         $db = new DatabaseConnection();
-        $rawData = (new DataExtract()) -> getRowWhere($db, "btsProject_User", ["idUser", $_SESSION['idUser']]);
+        $rawData = (new DataExtract()) -> getRowWhere($db, "btsProject_User", ["idUser", $_SESSION['idUser']], "");
         $data = $rawData[0];
         include 'template/AccountPageTemplate.php';
     }
     function editionLayout(){
         $title = 'Modification du compte';
         $db = new DatabaseConnection();
-        $rawData = (new DataExtract()) -> getRowWhere($db, "btsProject_User", ["idUser", $_SESSION['idUser']]);
+        $rawData = (new DataExtract()) -> getRowWhere($db, "btsProject_User", ["idUser", $_SESSION['idUser']], "");
         $data = $rawData[0];
         $this -> edition = true;
         $this -> editInput = "";

@@ -10,7 +10,7 @@ class Patients{
         if ($_SESSION['role'] == 'admin'){
             $title = 'Patients';
             $db = new DatabaseConnection();
-            $patientList = (new DataExtract()) -> getList($db, "btsProject_User_Patient");
+            $patientList = (new DataExtract()) -> getList($db, "btsProject_User_Patient", "");
             include 'template/PatientsPageTemplate.php';
         } else {
             header('Refresh:0; url=index.php?page=homePage');

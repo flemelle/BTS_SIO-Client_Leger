@@ -12,8 +12,8 @@ class DataExtract
         return $data;   
         
     }
-    function getRowWhere($db, $table, $where){
-        $rqt = $db -> getConnection() -> prepare ("SELECT * FROM $table WHERE " . $where[0] . " = " . $where[1] . ";");
+    function getRowWhere($db, $table, $where, $field){
+        $rqt = $db -> getConnection() -> prepare ("SELECT * FROM $table WHERE " . $where[0] . " = " . $where[1] . sortBy($field) . ";");
         $rqt -> execute();
         $data = $rqt -> fetchAll();
         return $data;
@@ -24,19 +24,28 @@ class DataExtract
         $data = $rqt -> fetch();
         return $data;
     }
-    function getList($db, $table){
+    function getList($db, $table, $field){
         $rqt = $db -> getConnection() -> prepare (
-            "SELECT * FROM $table;");
+            "SELECT * FROM $table ". sortBy($field) .";");
         $rqt -> execute();
         $data = $rqt -> fetchAll();
         return $data;
     }
-    function getListWhere($db, $table, $id, $idTitle){
+    function getListWhere($db, $table, $id, $idTitle, $field){
         $rqt = $db -> getConnection() -> prepare (
-            "SELECT * FROM $table WHERE $idTitle" ." = ". $id .";");
+            "SELECT * FROM $table WHERE $idTitle" ." = ". $id . sortBy($field) .";");
         $rqt -> execute();
         $data = $rqt -> fetchAll();
         return $data;
+    }
+    function sortBy($field){
+        if ($field == null){
+            return "";
+        }
+        else if ($field != null){
+            $requestComplement = " ORDER BY " . $field;
+            return $requestComplement;
+        }
     }
 }
 ?>
