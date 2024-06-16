@@ -6,11 +6,11 @@ use Application\Models\DataExtract\DataExtract;
 use Application\Lib\Database\DatabaseConnection;
 
 class Patients{
-    function dataLoading(){
+    function dataLoading($sortBy){
         if ($_SESSION['role'] == 'admin'){
             $title = 'Patients';
             $db = new DatabaseConnection();
-            $patientList = (new DataExtract()) -> getList($db, "btsProject_User_Patient", "");
+            $patientList = (new DataExtract()) -> getList($db, "btsProject_User_Patient", $sortBy);
             include 'template/PatientsPageTemplate.php';
         } else {
             header('Refresh:0; url=index.php?page=homePage');

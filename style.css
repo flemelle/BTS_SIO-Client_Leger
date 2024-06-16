@@ -12,6 +12,7 @@ html, body {
     --secondary-color: #ffffff;
     --third-color: #f1f7fe;
     --text-color : #00264c;
+    --text-color-hover : #004488;
     --border-radius : 2px;
 }
 body {
@@ -97,6 +98,15 @@ table {
     width: 98%;
     border : 2px solid var(--font-color);
     border-radius : var(--border-radius);
+}
+thead a{
+    color : var(--text-color);
+}
+thead a:hover, thead a:visited:hover{
+    color : var(--text-color-hover);
+}
+thead a:visited{
+    color : var(--text-color);
 }
 td{
     border-bottom: 1px solid var(--third-color);

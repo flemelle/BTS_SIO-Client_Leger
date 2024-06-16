@@ -44,7 +44,7 @@ class User{
         (new UpdateItem()) -> updateItem($db, "btsProject_User", $postData['idUser'], 'idUser', $array);
         $this -> edition = false;
         echo  $postData['page'];
-        die('test');
+        //die('test');
         header("Refresh:0; url=index.php?page=".$postData['page']);
     }
     function delete($postData){
@@ -54,6 +54,16 @@ class User{
         // echo var_dump($postData);
         // echo var_dump($array);
         (new DeleteItem()) -> deleteItemWhere($db, "btsProject_User", $array[1], $array[0]);
+        //die('test');
+        header("Refresh:0; url=index.php?page=".$postData['page']);
+    }
+    function sortBy($postData){
+        //echo 'test';
+        $db = new DatabaseConnection();
+        $this -> page = $postData['page'];
+        $rawData = (new DataExtract()) -> getRowWhere($db, "btsProject_User", ["idUser", $postData['idUser']], $postData['sortField']);
+        $this -> edition = false;
+        echo  $postData['page'];
         //die('test');
         header("Refresh:0; url=index.php?page=".$postData['page']);
     }

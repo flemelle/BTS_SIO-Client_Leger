@@ -1,51 +1,38 @@
 <?php
+
 namespace Application\Models\DataExtract;
+require_once('SelectModel.php');
+use Application\Models\SelectModel\SelectModel;
 
 class DataExtract
 {    
     function credentialVerification($tab, $db){
         $rqt = $db -> getConnection() -> prepare (
-        "SELECT * FROM btsProject_User WHERE " . " mail = '" . $tab['mail']. "' and password = '" . $tab['password'] . "';");
-        $rqt -> execute();
-        $data = $rqt -> fetch();
-        // echo var_dump($data);
-        return $data;   
-        
-    }
-    function getRowWhere($db, $table, $where, $field){
-        $rqt = $db -> getConnection() -> prepare ("SELECT * FROM $table WHERE " . $where[0] . " = " . $where[1] . sortBy($field) . ";");
-        $rqt -> execute();
-        $data = $rqt -> fetchAll();
-        return $data;
+            "SELECT * FROM btsProject_User WHERE " . " mail = '" . $tab['mail']. "' and password = '" . $tab['password'] . "';");
+        return (new SelectModel())->  FetchDataItem($rqt);
     }
     function getItemWhere($db, $item, $table, $where){
-        $rqt = $db -> getConnection() -> prepare ("SELECT $item FROM $table WHERE " . $where[0] + " = " + $where[1] . ";");
-        $rqt -> execute();
-        $data = $rqt -> fetch();
-        return $data;
+        $rqt = $db -> getConnection() -> prepare (
+            "SELECT $item FROM $table WHERE " . $where[0] + " = " + $where[1] . ";");
+        return (new SelectModel())-> FetchDataItem($rqt);
+    }
+    function getRowWhere($db, $table, $where){
+        $rqt = $db -> getConnection() -> prepare (
+            "SELECT * FROM $table WHERE " . $where[0] . " = " . $where[1] . ";");
+        return (new SelectModel())-> FetchDataList($rqt);
     }
     function getList($db, $table, $field){
         $rqt = $db -> getConnection() -> prepare (
-            "SELECT * FROM $table ". sortBy($field) .";");
-        $rqt -> execute();
-        $data = $rqt -> fetchAll();
-        return $data;
+            "SELECT * FROM $table ". (new SelectModel())-> sortBy($field) .";");
+        return (new SelectModel())-> FetchDataList($rqt);
     }
     function getListWhere($db, $table, $id, $idTitle, $field){
         $rqt = $db -> getConnection() -> prepare (
-            "SELECT * FROM $table WHERE $idTitle" ." = ". $id . sortBy($field) .";");
-        $rqt -> execute();
-        $data = $rqt -> fetchAll();
-        return $data;
-    }
-    function sortBy($field){
-        if ($field == null){
-            return "";
-        }
-        else if ($field != null){
-            $requestComplement = " ORDER BY " . $field;
-            return $requestComplement;
-        }
+            "SELECT * FROM $table WHERE $idTitle" ." = ". $id . (new SelectModel())-> sortBy($field) .";");
+            // echo (
+            //     "SELECT * FROM $table WHERE $idTitle" ." = ". $id . (new SelectModel())-> sortBy($field) .";");
+            //     die;
+        return (new SelectModel())-> FetchDataList($rqt);
     }
 }
 ?>

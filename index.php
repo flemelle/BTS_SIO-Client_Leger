@@ -19,7 +19,7 @@ use Application\Controllers\Prescription\Prescription;
 use Application\Controllers\Appointement\Appointement;
 use Application\Controllers\Error\Error;
 use Application\Controllers\Disconnection\Disconnection;
-use  Application\Controllers\User\User;
+use Application\Controllers\User\User;
 
 try
 {    
@@ -52,10 +52,13 @@ try
                                     (new User()) -> delete($_GET);
                                     break;
                                 default :
-                                    (new Doctors()) -> dataLoading();
+                                    (new Doctors()) -> dataLoading("");
                                 }
+                            }
+                        else if (isset ($_GET["sortBy"])){
+                        (new Doctors()) -> dataLoading($_GET["sortBy"]);
                         }else {
-                            (new Doctors()) -> dataLoading();
+                            (new Doctors()) -> dataLoading("");
                         }
                         break;
                     case "patient":
@@ -71,19 +74,24 @@ try
                                 case "delete":
                                     (new User()) -> delete($_GET);
                                     break;
+                                case "sortBy":
+                                    (new Patients()) -> dataLoading($_GET["sortBy"]);
+                                    break;
                                 default :
-                                    (new Patients()) -> dataLoading();
+                                    (new Patients()) -> dataLoading("");
                                 }
                             break;
-                        } else {
-                            (new Patients()) -> dataLoading();
+                        }
+                        else if (isset ($_GET["sortBy"])){
+                        (new Patients()) -> dataLoading($_GET["sortBy"]);}
+                        else {
+                            (new Patients()) -> dataLoading("");
                         }
                         break;
                     case "prescription":
                         (new Prescription()) -> page();
                         break;
                     case "account":
-                        
                         if (isset($_GET['action'])){
                             switch ($_GET["action"]){
                                 case "update":

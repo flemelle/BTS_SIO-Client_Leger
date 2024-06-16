@@ -5,10 +5,10 @@ ob_start();?>
 
 <table>
     <thead>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Mail</th>
-        <th>Adresse</th>
+        <th><a href="index.php?page=doctor&sortBy=lastName">Nom<a></th>
+        <th><a href="index.php?page=doctor&sortBy=firstName">Prénom</th>
+        <th><a href="index.php?page=doctor&sortBy=mail">Mail</th>
+        <th><a href="index.php?page=doctor&sortBy=address">Adresse</th>
         <th colspan ='2'>Edition</th>
     </thead>
     <tbody>   
