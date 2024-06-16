@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.1deb3
 -- https://www.phpmyadmin.net/
 --
--- Host: korradr1.mysql.db
--- Generation Time: Dec 11, 2023 at 02:28 AM
--- Server version: 5.7.42-log
--- PHP Version: 8.1.23
+-- Host: localhost:3306
+-- Generation Time: Jun 12, 2024 at 09:45 PM
+-- Server version: 8.0.37-0ubuntu0.24.04.1
+-- PHP Version: 8.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `korradr1`
+-- Database: `btsProject`
 --
 
 -- --------------------------------------------------------
@@ -28,21 +28,25 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `btsProject_Appointment` (
-  `idAppointment` int(11) NOT NULL,
+  `idAppointment` int NOT NULL,
   `dateAppointment` date DEFAULT NULL,
   `timeAppointment` time DEFAULT NULL,
   `reason` text,
-  `idPatient` int(11) DEFAULT NULL,
-  `idDoctor` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `idPatient` int DEFAULT NULL,
+  `idDoctor` int DEFAULT NULL,
+  `status` enum('pending','validated','canceled') DEFAULT 'pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `btsProject_Appointment`
 --
 
-INSERT INTO `btsProject_Appointment` (`idAppointment`, `dateAppointment`, `timeAppointment`, `reason`, `idPatient`, `idDoctor`) VALUES
-(1, '2023-12-03', NULL, 'Maux de têtes', 201, 102),
-(2, '2023-12-05', '10:00:00', 'Nausées', 201, 102);
+INSERT INTO `btsProject_Appointment` (`idAppointment`, `dateAppointment`, `timeAppointment`, `reason`, `idPatient`, `idDoctor`, `status`) VALUES
+(1, '2023-12-03', NULL, 'Maux de têtes', 201, 102, 'validated'),
+(2, '2023-12-05', '10:00:00', 'Nausées', 201, 102, 'canceled'),
+(3, '2023-12-19', '15:50:00', 'TEST STATUS', 201, 102, 'validated'),
+(4, '2023-12-15', '10:10:00', 'TEEEEEST', 201, 102, 'validated'),
+(5, '2024-02-16', '10:10:00', 'Plaquette de frein', 201, 102, 'canceled');
 
 --
 -- Indexes for dumped tables
@@ -62,7 +66,7 @@ ALTER TABLE `btsProject_Appointment`
 -- AUTO_INCREMENT for table `btsProject_Appointment`
 --
 ALTER TABLE `btsProject_Appointment`
-  MODIFY `idAppointment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idAppointment` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

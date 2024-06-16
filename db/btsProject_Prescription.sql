@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.1deb3
 -- https://www.phpmyadmin.net/
 --
--- Host: korradr1.mysql.db
--- Generation Time: Dec 11, 2023 at 02:28 AM
--- Server version: 5.7.42-log
--- PHP Version: 8.1.23
+-- Host: localhost:3306
+-- Generation Time: Jun 12, 2024 at 09:45 PM
+-- Server version: 8.0.37-0ubuntu0.24.04.1
+-- PHP Version: 8.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `korradr1`
+-- Database: `btsProject`
 --
 
 -- --------------------------------------------------------
@@ -28,12 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `btsProject_Prescription` (
-  `idPrescription` int(11) NOT NULL,
+  `idPrescription` int NOT NULL,
   `datePrescription` date DEFAULT NULL,
   `content` text,
-  `idPatient` int(11) DEFAULT NULL,
-  `idDoctor` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `idPatient` int DEFAULT NULL,
+  `idDoctor` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `btsProject_Prescription`
@@ -62,7 +62,7 @@ ALTER TABLE `btsProject_Prescription`
 -- AUTO_INCREMENT for table `btsProject_Prescription`
 --
 ALTER TABLE `btsProject_Prescription`
-  MODIFY `idPrescription` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idPrescription` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
